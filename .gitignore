@@ -1,0 +1,92 @@
+ # Database files
+*.mdf
+*.ldf
+*.ndf
+*.bak
+*.dbf
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Log files
+*.log
+logs/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE - SSMS (SQL Server Management Studio)
+*.ssmssln
+*.ssmssqlproj
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Operating System
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Backup files
+*~
+*.swp
+*.bak
+*.backup
+
+# Data files
+*.csv
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+*.mdb
+*.accdb
+
+# Configuration files with sensitive information
+config.json
+appsettings.json
+*.config
+
+# Package directories
+node_modules/
+packages/
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Compressed files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+data.sql
