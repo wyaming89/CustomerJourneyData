@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户旅程桑基图</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        #main {
+            width: 100%;
+            height: 800px;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">用户旅程桑基图</div>
+    <div id="main"></div>
+    <script>
+        // 初始化图表
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        // 格式化数字
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+            }
+            return num.toLocaleString();
+        }
+
+        // 加载数据
+        Promise.all([
+            fetch('data.json').then(response => response.json()),
+            fetch('link.json').then(response => response.json())
+        ]).then(([data, links]) => {
+            option = {
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove',
+                    formatter: function(params) {
+                        if (params.dataType === 'node') {
+                            return `${params.name}<br/>数量: ${params.value.toLocaleString()}`;
+                        } else {
+                            return `${params.sourceData.name} -> ${params.targetData.name}<br/>数量: ${params.value.toLocaleString()}`;
+                        }
+                    }
+                },
+                series: [{
+                    type: 'sankey',
+                    emphasis: {
+                        focus: 'adjacency'
+                    },
+                    nodeAlign: 'left',
+                    layoutIterations: 32,
+                    label: {
+                        position: 'right',
+                        formatter: function(params) {
+                            return params.name + '\n' + formatNumber(params.value);
+                        }
+                    },
+                    data: data.data.map(item => ({
+                        name: item.name,
+                        value: item.value,
+                        depth: item.depth - 1,  // 调整深度以适应显示
+                        label: {
+                            color: '#000',
+                            fontSize: 12
+                        }
+                    })),
+                    links: links.links.map(link => ({
+                        ...link,
+                        lineStyle: {
+                            color: 'rgba(0, 0, 0, 0.2)'
+                        }
+                    }))
+                }]
+            };
+
+            // 设置图表配置
+            myChart.setOption(option);
+        }).catch(error => {
+            console.error('Error loading the data:', error);
+        });
+
+        // 响应窗口大小变化
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    </script>
+</body>
+</html> 
