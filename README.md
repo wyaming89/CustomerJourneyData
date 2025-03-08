@@ -1,45 +1,173 @@
-## English
+# CustomerJourneyData: 全链路用户旅程分析项目
 
-# Project Introduction: CustomerJourneyData
+## 项目概述
 
-The **CustomerJourneyData** project is designed to create a **unified and comprehensive consumer data ecosystem** by seamlessly integrating data flows across various enterprise systems, including **Marketing Automation**, **Loyalty Management**, **Payment & Order Processing**, and more. This initiative focuses on breaking down data silos to provide a **holistic view of the consumer journey**, enabling businesses to unlock actionable insights and drive operational excellence.
+CustomerJourneyData 项目是一个端到端的用户旅程分析解决方案，从数据库集成开始，通过数据清洗、转换、分析到可视化展示，全面追踪和分析用户在不同渠道、触点的转化路径。项目通过打通多个业务系统数据，建立统一的用户视图，为企业提供数据驱动的决策支持。
 
-By connecting and analyzing consumer data at every touchpoint, **CustomerJourneyData** empowers organizations to:  
+![用户旅程桑基图](./sankey_diagram.png)
 
-- **Understand consumer behavior:** Gain deep insights into customer preferences, habits, and decision-making processes across all stages of the journey.  
-- **Optimize touchpoint efficiency:** Identify bottlenecks and improve the performance of key interactions, from marketing campaigns to payment processes.  
-- **Enhance personalization:** Deliver tailored experiences and targeted messaging based on a unified, 360-degree customer profile.  
-- **Boost business outcomes:** Increase conversion rates, improve customer retention, and maximize ROI by leveraging data-driven strategies.  
+## 数据处理流程
 
-This project is not just about data integration—it's about transforming how businesses interact with their customers. By leveraging **end-to-end consumer data**, **CustomerJourneyData** helps organizations streamline operations, improve decision-making, and ultimately drive sustainable growth in a competitive marketplace.  
+### 1. 数据集成与清洗
+- **基础数据初始化**
+  - 用户基础信息整合
+  - 注册行为分析
+  - 系统数据对齐
 
-## Key Features:  
-- **Seamless data integration:** Connect and unify data from marketing, membership, payment, and order systems.  
-- **Behavioral analytics:** Analyze consumer habits and preferences across the entire journey.  
-- **Operational efficiency:** Track and optimize the performance of each touchpoint.  
-- **Actionable insights:** Enable data-driven strategies to enhance customer engagement and business profitability.  
+- **业务数据接入**
+  - 营销活动数据
+  - 线下活动数据
+  - 会员活动记录
+  - 用户行为数据
+  - 应用使用数据
 
-**CustomerJourneyData** is the foundation for building stronger customer relationships, improving operational agility, and achieving long-term success in the age of data-driven business.
+- **路径分析处理**
+  - 用户行为路径识别
+  - 注册渠道对齐
+  - 统计指标计算
 
-## 中文
+### 2. 分析成果
 
-# 项目介绍：CustomerJourneyData
+#### 用户获取与分布
+- 总获客规模：1.2M+
+- 四大主要获客渠道：
+  - 渠道A（533.9K，44.5%）
+  - 渠道B（433.4K，36.1%）
+  - 渠道C（230.1K，19.2%）
+  - 渠道D（40K，0.2%）
 
-**CustomerJourneyData** 项目旨在通过无缝集成各种企业系统（包括**营销自动化**、**忠诚度管理**、**支付与订单处理**等）中的数据流，创建一个**统一且全面的消费者数据生态系统**。该计划专注于打破数据孤岛，提供**消费者旅程的整体视图**，使企业能够解锁可操作的洞察力并推动卓越的运营。
+#### 关键转化指标
+- **初始互动**：539.7K用户完成首次行为
+- **目标付费用户**：439K，整体转化率36.6%
+- **会员等级分布**：
+  - 普通会员：96.3K
+  - 高级会员：29K
+  - 特权会员：9.8K
 
-通过在每个接触点连接和分析消费者数据，**CustomerJourneyData** 使组织能够：  
+#### 核心路径转化率
+- 渠道A → 目标付费用户：24.9%
+- 活动A → 目标付费用户：37.3%
+- 普通会员 → 高级会员：30.2%
+- 高级会员 → 特权会员：33.7%
 
-- **了解消费者行为：** 深入了解客户偏好、习惯和决策过程的各个阶段。  
-- **优化接触点效率：** 识别瓶颈并改善关键互动的性能，从营销活动到支付流程。  
-- **增强个性化：** 基于统一的360度客户档案提供定制体验和目标消息。  
-- **提升业务成果：** 通过利用数据驱动的策略提高转化率、改善客户保留率并最大化投资回报率。  
+## 项目结构
 
-该项目不仅仅是数据集成——它是关于改变企业与客户互动的方式。通过利用**端到端的消费者数据**，**CustomerJourneyData** 帮助组织简化运营、改善决策，并最终在竞争激烈的市场中实现可持续增长。  
+```
+CustomerJourneyData/
+├── sql/                          # SQL查询和数据处理
+│   ├── 00_main.sql              # 主处理流程
+│   ├── 01_init_base_users.sql   # 用户基础数据
+│   ├── 02_user_registration.sql # 注册行为分析
+│   ├── 03_marketing_activities.sql # 营销活动
+│   ├── 04_offline_activities.sql  # 线下活动
+│   ├── 05_member_activities.sql   # 会员活动
+│   ├── 06_user_behavior.sql     # 用户行为
+│   ├── 07_app_behavior.sql      # 应用行为
+│   ├── 08_roadmap_analysis.sql  # 路径分析
+│   ├── 09_registration_alignment.sql # 注册对齐
+│   └── 10_statistics.sql        # 统计分析
+├── data.json                     # 节点数据
+├── link.json                     # 关系数据
+├── sankey.html                   # 桑基图可视化
+└── consumer_analysis_2023.md     # 详细分析报告
+```
 
-## 关键特性：  
-- **无缝数据集成：** 连接和统一来自营销、会员、支付和订单系统的数据。  
-- **行为分析：** 分析整个旅程中的消费者习惯和偏好。  
-- **运营效率：** 跟踪和优化每个接触点的性能。  
-- **可操作的洞察力：** 启用数据驱动的策略以增强客户参与度和业务盈利能力。  
+## 主要功能
 
-**CustomerJourneyData** 是在数据驱动业务时代建立更强客户关系、提高运营敏捷性和实现长期成功的基础。
+1. **数据集成与清洗**
+   - 多源数据整合
+   - 用户行为对齐
+   - 数据标准化处理
+   - 数据质量保证
+
+2. **路径分析**
+   - 用户行为序列提取
+   - 转化路径识别
+   - 漏斗分析
+   - 路径优化建议
+
+3. **可视化分析**
+   - 交互式桑基图
+   - 节点流转关系
+   - 数值大小映射
+   - 路径重要性展示
+
+4. **报告生成**
+   - 自动化数据统计
+   - 关键指标提取
+   - 可视化图表生成
+   - 分析洞察总结
+
+## 使用方法
+
+1. **数据处理**
+   ```bash
+   # 执行数据处理脚本
+   cd sql
+   sqlcmd -i 00_main.sql
+   ```
+
+2. **数据准备**
+   ```json
+   // data.json 示例
+   {
+     "data": [
+       {"name": "节点名", "depth": 1, "value": 1000}
+     ]
+   }
+   ```
+
+3. **可视化展示**
+   ```bash
+   # 启动本地服务器
+   python3 -m http.server 8000
+   # 访问 http://localhost:8000/sankey.html
+   ```
+
+## 关键发现与建议
+
+### 优势
+1. 数据打通全面，覆盖用户全生命周期
+2. 获客渠道多元化，总体规模可观
+3. 目标付费用户转化率达36.6%
+4. 会员升级路径清晰，转化率稳定
+
+### 改进方向
+1. 优化渠道D获客效率
+2. 提升活动参与度
+3. 加强高等级会员占比
+4. 完善数据质量监控
+
+## 后续计划
+
+1. **数据优化**
+   - 扩展数据源接入
+   - 提升数据处理效率
+   - 增强数据质量监控
+
+2. **获客优化**
+   - 渠道效率均衡化
+   - 获客成本优化
+   - 渠道策略优化
+
+3. **转化提升**
+   - 活动机制改进
+   - 触达精准度提升
+   - 个性化策略优化
+
+4. **会员发展**
+   - 完善升级路径
+   - 强化会员权益
+   - 提升留存率
+
+## 贡献指南
+
+欢迎提交Issue和Pull Request来帮助改进项目。提交时请确保：
+1. SQL脚本符合规范并有注释
+2. 数据处理逻辑清晰可追溯
+3. 提供必要的文档说明
+4. 更新相关分析报告
+
+## 许可证
+
+本项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
