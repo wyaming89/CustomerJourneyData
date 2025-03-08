@@ -1,4 +1,58 @@
- # Database files
+# IDE配置
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 开发日志
+dev.log
+*.log
+
+# 环境配置
+.env
+.env.local
+.env.*.local
+
+# 依赖目录
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*~
+
+# 构建输出
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 测试覆盖率报告
+coverage/
+.coverage
+htmlcov/
+
+# 数据文件
+*.bak
+*.backup
+test_data/
+
+# 密钥和证书
+*.pem
+*.key
+*.crt
+
+# Database files
 *.mdf
 *.ldf
 *.ndf
@@ -14,10 +68,6 @@
 *.tmp
 temp/
 tmp/
-
-# Log files
-*.log
-logs/
 
 # IDE - VSCode
 .vscode/*
@@ -37,18 +87,10 @@ logs/
 *.ssmssln
 *.ssmssqlproj
 
-# Environment variables
-.env
-.env.local
-.env.*.local
-
 # Operating System
-.DS_Store
-Thumbs.db
 Desktop.ini
 
 # Backup files
-*~
 *.swp
 *.bak
 *.backup
@@ -68,7 +110,6 @@ appsettings.json
 *.config
 
 # Package directories
-node_modules/
 packages/
 
 # Compiled files
